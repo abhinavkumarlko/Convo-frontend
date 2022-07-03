@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Chat from "./components/Chat";
+import Header from "./components/Header";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route element={<Chat />} path="chatpage" />
+          <Route element={<NotFound />} path="404" />
+
+          <Route exact element={<Navigate to="/chatpage" />} path="/" />
+          <Route exact element={<Navigate to="/404" />} path="*" />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

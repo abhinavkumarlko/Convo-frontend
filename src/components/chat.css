@@ -1,0 +1,27 @@
+.chat-area{
+    height: 70vh;
+    overflow-y: auto;
+    padding: 2rem;
+}
+
+.msg-text{
+    color: white;
+    font-weight: bold;
+    padding: 1.5rem;
+    width: fit-content;
+    max-width: 70%;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.263);
+}
+
+ 
+.msg-sent{
+    background: rgb(0, 167, 81);
+    margin-left: auto;
+    border-radius: 1.5rem 0 1.5rem 1.5rem;
+}
+
+.msg-rec{
+    background: rgb(0, 166, 255);
+    border-radius: 0 1.5rem 1.5rem 1.5rem;
+
+}
