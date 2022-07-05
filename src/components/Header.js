@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import chatlogo from "../images/chatlogo.png";
 
 // import { Link, NavLink } from "react-router-dom";
@@ -6,7 +7,7 @@ import chatlogo from "../images/chatlogo.png";
 const Header = () => {
   return (
     <div>
-      <nav class="navbar navbar-expand-lg navbar-black bg-black fixed-top  ">
+      <nav class="navbar navbar-expand-lg navbar-black bg-black fixed-to  ">
         <div class="container ">
           <a class="navbar-brand m-2" href="/">
             <img
@@ -37,6 +38,11 @@ const Header = () => {
                 {/* <NavLink className="nav-link white" to="/homepage">
                   Home
                 </NavLink> */}
+              </li>
+              <li className="nav-item mx-2">
+              <NavLink className="btn btn-success white" to="/loginpage">
+                  Login/Registration
+                </NavLink>
               </li>
             </ul>
           </div>
