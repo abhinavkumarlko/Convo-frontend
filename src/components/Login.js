@@ -10,6 +10,28 @@ const Login = () => {
   const handleFormSubmit = (formdata) => {
     console.log("Login Successfull!");
     console.log(formdata);
+
+    fetch("http://localhost:5000/user/authenticate", {
+      method: "POST",
+      body: JSON.stringify(formdata),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => {
+      if (res.status === 200) {
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Login Successful",
+        });
+      } else if (res.status === 300) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops!!",
+          text: "Invalid Credentials",
+        });
+      }
+    });
   };
 
   const loginSchema = Yup.object().shape({
@@ -83,8 +105,9 @@ const Login = () => {
                         style={{ textAlign: "center" }}
                       >
                         Don't have an account?
-                        <Link className=" darkgreen fs-5 " to={"/registerpage"}>Sign up</Link>
-                        
+                        <Link className=" darkgreen fs-5 " to={"/registerpage"}>
+                          Sign up
+                        </Link>
                       </p>
                     </form>
                   )}

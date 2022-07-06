@@ -4,25 +4,43 @@ import "./style.css";
 import * as Yup from "yup";
 import chatlogo from "../images/chatlogo.png";
 
-import {
-  Button,
-  TextField,
-} from "@mui/material";
-
+import { Button, TextField } from "@mui/material";
 
 const Register = () => {
   const handleFormSubmit = (formdata) => {
     console.log("Signup Successfull!");
     console.log(formdata);
+
+    fetch("http://localhost:5000/user/add", {
+      method: "POST",
+      body: JSON.stringify(formdata),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => {
+      console.log(res.status);
+      if (res.status === 200) {
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Registration Successful",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops!!",
+          text: "Some Error Occured",
+        });
+      }
+    });
   };
 
   const loginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required field"),
-    name: Yup.string().required(" Required field"),  
-    contact: Yup.number().required(" Required field"), 
+    name: Yup.string().required(" Required field"),
+    contact: Yup.number().required(" Required field"),
     password: Yup.string().required(" Required field"),
   });
-
 
   return (
     <div
@@ -46,15 +64,13 @@ const Register = () => {
                 email: "",
                 contact: "",
                 password: "",
-                
               }}
               onSubmit={handleFormSubmit}
               validationSchema={loginSchema}
-
             >
               {({ values, handleChange, handleSubmit, errors }) => (
                 <form onSubmit={handleSubmit}>
-                   <TextField
+                  <TextField
                     sx={{ mt: 3 }}
                     fullWidth
                     label="Full Name"
@@ -65,7 +81,7 @@ const Register = () => {
                     error={Boolean(errors.name)}
                     helperText={errors.name}
                   />
-                 
+
                   <TextField
                     sx={{ mt: 3 }}
                     fullWidth
@@ -77,7 +93,7 @@ const Register = () => {
                     error={Boolean(errors.email)}
                     helperText={errors.email}
                   />
-                 
+
                   <TextField
                     sx={{ mt: 3 }}
                     fullWidth
@@ -91,27 +107,26 @@ const Register = () => {
                     helperText={errors.contact}
                   />
                   <TextField
-                        sx={{ mt: 3 }}
-                        fullWidth
-                        type="password"
-                        label="Password"
-                        placeholder="Password"
-                        id="password"
-                        value={values.password}
-                        onChange={handleChange}
-                        error={Boolean(errors.password)}
-                        helperText={errors.password}
-                      />
+                    sx={{ mt: 3 }}
+                    fullWidth
+                    type="password"
+                    label="Password"
+                    placeholder="Password"
+                    id="password"
+                    value={values.password}
+                    onChange={handleChange}
+                    error={Boolean(errors.password)}
+                    helperText={errors.password}
+                  />
                   <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt : 3, p:2  }}
-                        color="success"
-                      >
-                        Submit
-                      </Button>
-                     
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, p: 2 }}
+                    color="success"
+                  >
+                    Submit
+                  </Button>
                 </form>
               )}
             </Formik>
