@@ -69,7 +69,11 @@
     border: 0.05px solid rgb(179, 179, 179);
    padding: 4px;
 }
-.card-blur { background-color: rgba(245, 245, 245, 0.8); }
+/* .card-blur { background-color: rgba(245, 245, 245, 0.8); } */
+.mask-custom {
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 255, 136, 0.1);
+  }
 .img-logo{
     width: 38%;
     display: block;
@@ -77,7 +81,15 @@
 
 }
 .img-logo1{
-    width: 14%;
+    width: 10%;
     display: block;
     margin-left: 500px;
+}
+.mt-lg{
+    margin-top: 65px;
+}
+.mt-rt{
+    margin-top:86px;
+    width: 1100px;
+    padding-top: 50px;
 }

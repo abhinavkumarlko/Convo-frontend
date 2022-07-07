@@ -4,9 +4,12 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import "./style.css";
 import chatlogo from "../images/chatlogo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const handleFormSubmit = (formdata) => {
     console.log("Login Successfull!");
     console.log(formdata);
@@ -23,6 +26,14 @@ const Login = () => {
           icon: "success",
           title: "Success",
           text: "Login Successful",
+        }).then(() => {
+
+          res.json().then((userdata) => {
+            console.log(userdata);
+            sessionStorage.setItem('user', JSON.stringify(userdata));
+          })
+          navigate("/chatpage");
+
         });
       } else if (res.status === 300) {
         Swal.fire({
@@ -50,10 +61,10 @@ const Login = () => {
         backgroundSize: "cover",
       }}
     >
-      <div style={{ height: "90vh" }}>
-        <div className="row h-100 justify-content-center align-items-center">
+      <div className="mt-lg " style={{ height: "90vh" }}>
+        <div className="row h-100 justify-content-center align-items-center ">
           <div className="col-md-3">
-            <div className="card card-blur">
+            <div className="card ">
               <div className="card-body">
                 {/* <h3 className=" text-center">Login </h3> */}
                 <img src={chatlogo} alt="logo" className="img-logo " />

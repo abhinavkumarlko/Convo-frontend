@@ -3,8 +3,8 @@ import React from "react";
 import "./style.css";
 import * as Yup from "yup";
 import chatlogo from "../images/chatlogo.png";
-
 import { Button, TextField } from "@mui/material";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const handleFormSubmit = (formdata) => {
@@ -53,8 +53,8 @@ const Register = () => {
         backgroundSize: "cover",
       }}
     >
-      <div className="container  ">
-        <div className="card card-blur ">
+      <div className="container mt-rt ">
+        <div className="card mask-custom ">
           <div className="card-body ">
             <img src={chatlogo} alt="" className="img-logo1 " />
 
@@ -80,6 +80,7 @@ const Register = () => {
                     onChange={handleChange}
                     error={Boolean(errors.name)}
                     helperText={errors.name}
+                    style={{}}
                   />
 
                   <TextField

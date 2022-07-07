@@ -7,7 +7,7 @@ import chatlogo from "../images/chatlogo.png";
 const Header = () => {
   return (
     <div>
-      <nav class="navbar navbar-expand-lg navbar-black bg-black fixed-to  ">
+      <nav class="navbar navbar-expand-lg navbar-black bg-black fixed-top  ">
         <div class="container ">
           <a class="navbar-brand m-2" href="/">
             <img

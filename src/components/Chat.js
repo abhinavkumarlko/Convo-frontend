@@ -7,6 +7,10 @@ const Chat = () => {
   const [socket] = useState(io(url, { autoConnect: false }));
   const [text, setText] = useState("");
 
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(sessionStorage.getItem("user"))
+  );
+
   const [messageList, setMessageList] = useState([
     // { text : 'Kal kon sa exam hai?', sent: true },
     // { text : 'Kal hi pata krenge!!', sent: false },
@@ -16,6 +20,7 @@ const Chat = () => {
 
   useEffect(() => {
     socket.connect();
+    console.log(currentUser);
   });
 
   socket.on("recmsg", (data) => {
@@ -28,6 +33,8 @@ const Chat = () => {
     setMessageList([...messageList, obj]);
   };
 
+
+
   const displayMessages = () => {
     return messageList.map(({ text, sent }) => (
       <div className="msg-body">
@@ -37,8 +44,8 @@ const Chat = () => {
   };
 
   return (
-    <div className="h-100 bg-light">
-      <div className="container pt-5 ">
+    <div className="h-100 mt-5">
+      <div className="container pt-5">
         <div className="card">
           <div className="card-body">
             <div className="chat-area">{displayMessages()}</div>
