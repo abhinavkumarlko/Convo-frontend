@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import chatlogo from "../images/chatlogo.png";
-
 // import { Link, NavLink } from "react-router-dom";
-
-
 
 const Header = () => {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(sessionStorage.getItem("user"))
   );
+  const navigate = useNavigate();
+  const logout = () => {
+    sessionStorage.removeItem("user");
+    navigate("/loginpage");
+  };
 
   return (
     <div>
@@ -46,11 +48,16 @@ const Header = () => {
                 </NavLink> */}
               </li>
               <li className="nav-item mx-2">
-                if(currentUser==false){
-                  <button className="btn btn-success white">Login/Registration</button>
-                }else{
-                  <button className="btn btn-danger white">Logout</button>
-                }
+                {currentUser === null ? (
+                  <NavLink className="btn btn-success white" to="/chatpage">
+                    Login/Registration
+                  </NavLink>
+                ) : (
+                  <button className="btn btn-danger white " onClick={logout}>
+                    Logout
+                  </button>
+                )}
+
                 {/* <NavLink className="btn btn-success white" to="/loginpage">
                   { ? "Logout" : "Login/Registration"}
                 </NavLink> */}
