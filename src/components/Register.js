@@ -58,7 +58,7 @@ const Register = () => {
           <div className="card-body ">
             <img src={chatlogo} alt="" className="img-logo1 " />
 
-            <Formik
+            <Formik 
               initialValues={{
                 name: "",
                 email: "",
@@ -69,55 +69,59 @@ const Register = () => {
               validationSchema={loginSchema}
             >
               {({ values, handleChange, handleSubmit, errors }) => (
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} >
                   <TextField
                     sx={{ mt: 3 }}
                     fullWidth
-                    label="Full Name"
+                    
                     placeholder="Name"
                     id="name"
                     value={values.name}
                     onChange={handleChange}
                     error={Boolean(errors.name)}
                     helperText={errors.name}
-                    style={{}}
+                   
+                    className="txt-fld"
                   />
 
                   <TextField
                     sx={{ mt: 3 }}
                     fullWidth
-                    label="Email"
+                    
                     placeholder="Email Address"
                     id="email"
                     value={values.email}
                     onChange={handleChange}
                     error={Boolean(errors.email)}
                     helperText={errors.email}
+                    className="txt-fld"
                   />
 
                   <TextField
                     sx={{ mt: 3 }}
                     fullWidth
                     type="number"
-                    label="Contact"
+                    
                     placeholder="Contact Number"
                     id="contact"
                     value={values.contact}
                     onChange={handleChange}
                     error={Boolean(errors.contact)}
                     helperText={errors.contact}
+                    className="txt-fld"
                   />
                   <TextField
                     sx={{ mt: 3 }}
                     fullWidth
                     type="password"
-                    label="Password"
+                    
                     placeholder="Password"
                     id="password"
                     value={values.password}
                     onChange={handleChange}
                     error={Boolean(errors.password)}
                     helperText={errors.password}
+                    className="txt-fld"
                   />
                   <Button
                     type="submit"

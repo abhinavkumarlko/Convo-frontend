@@ -25,3 +25,15 @@
     border-radius: 0 1.5rem 1.5rem 1.5rem;
 
 }
+.scroll{
+    overflow-y: auto;
+    height: 84vh;
+}
+/* .user{
+    width: 10%;
+    background-color: antiquewhite;
+} */
+.text-view{
+    height: 5px;
+
+}

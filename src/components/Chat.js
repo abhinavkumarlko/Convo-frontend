@@ -11,6 +11,8 @@ const Chat = () => {
     JSON.parse(sessionStorage.getItem("user"))
   );
 
+  const [onlineUsers, setOnlineUsers] = useState([]);
+
   const [messageList, setMessageList] = useState([
     // { text : 'Kal kon sa exam hai?', sent: true },
     // { text : 'Kal hi pata krenge!!', sent: false },
@@ -18,13 +20,24 @@ const Chat = () => {
     // { text : 'ok Good Night!!', sent: false },
   ]);
 
+  const addOnline = () => {
+    console.log(currentUser);
+    socket.emit("setonline", currentUser._id);
+  };
+
   useEffect(() => {
     socket.connect();
     console.log(currentUser);
-  });
+    addOnline();
 
-  socket.on("recmsg", (data) => {
-    setMessageList([...messageList, data]);
+    socket.on("recmsg", (data) => {
+      setMessageList([...messageList, data]);
+    });
+
+    socket.on("usersonline", (data) => {
+      console.log(data);
+      // setOnlineUsers(data);
+    });
   });
 
   const sendMessage = () => {
@@ -32,8 +45,6 @@ const Chat = () => {
     socket.emit("sendmsg", obj);
     setMessageList([...messageList, obj]);
   };
-
-
 
   const displayMessages = () => {
     return messageList.map(({ text, sent }) => (
@@ -46,27 +57,89 @@ const Chat = () => {
   return (
     <div className="h-100 mt-5">
       <div className="container pt-5">
-        <div className="card">
-          <div className="card-body">
-            <div className="chat-area">{displayMessages()}</div>
+        <div className="row">
+          <div className="col-md-4 scroll">
+            <section>
+              <h5>Abhinav</h5>
+              <p>{text}</p>
+            </section>
+            <section>
+              <h5>Abhinav</h5>
+              <p>{text}</p>
+            </section>
+            <section>
+              <h5>Abhinav</h5>
+              <p>{text}</p>
+            </section>
+            <section>
+              <h5>Abhinav</h5>
+              <p>{text}</p>
+            </section>
+            <section>
+              <h5>Abhinav</h5>
+              <p>{text}</p>
+            </section>
+            <section>
+              <h5>Abhinav</h5>
+              <p>{text}</p>
+            </section>
+            <section>
+              <h5>Abhinav</h5>
+              <p>{text}</p>
+            </section>
+            <section>
+              <h5>Abhinav</h5>
+              <p>{text}</p>
+            </section>
+            <section>
+              <h5>Abhinav</h5>
+              <p>{text}</p>
+            </section>
+            <section>
+              <h5>Abhinav</h5>
+              <p>{text}</p>
+            </section>
+            <section>
+              <h5>Abhinav</h5>
+              <p>{text}</p>
+            </section>
+            <section>
+              <h5>Abhinav</h5>
+              <p>{text}</p>
+            </section>
+            <section>
+              <h5>Abhinav</h5>
+              <p>{text}</p>
+            </section>
+            <section>
+              <h5>Abhinav</h5>
+              <p>{text}</p>
+            </section>
           </div>
-          <div className="card-footer">
-            <div class="input-group mb-3">
-              <input
-                type="text"
-                class="form-control"
-                aria-describedby="button-addon2"
-                onChange={(e) => setText(e.target.value)}
-              />
-              <button
-                class="btn btn-primary"
-                onClick={sendMessage}
-                type="button"
-                id="button-addon2"
-                data-mdb-ripple-color="dark"
-              >
-                Send Message
-              </button>
+          <div className="col-md-8">
+            <div className="card">
+              <div className="card-body">
+                <div className="chat-area">{displayMessages()}</div>
+              </div>
+              <div className="card-footer">
+                <div class="input-group mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    aria-describedby="button-addon2"
+                    onChange={(e) => setText(e.target.value)}
+                  />
+                  <button
+                    class="btn btn-primary"
+                    onClick={sendMessage}
+                    type="button"
+                    id="button-addon2"
+                    data-mdb-ripple-color="dark"
+                  >
+                    Send Message
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
