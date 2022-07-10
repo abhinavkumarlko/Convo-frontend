@@ -5,8 +5,11 @@ import * as Yup from "yup";
 import chatlogo from "../images/chatlogo.png";
 import { Button, TextField } from "@mui/material";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const handleFormSubmit = (formdata) => {
     console.log("Signup Successfull!");
     console.log(formdata);
@@ -24,6 +27,8 @@ const Register = () => {
           icon: "success",
           title: "Success",
           text: "Registration Successful",
+        }).then(() => {
+          navigate("/loginpage");
         });
       } else {
         Swal.fire({
@@ -58,7 +63,7 @@ const Register = () => {
           <div className="card-body ">
             <img src={chatlogo} alt="" className="img-logo1 " />
 
-            <Formik 
+            <Formik
               initialValues={{
                 name: "",
                 email: "",
@@ -69,25 +74,22 @@ const Register = () => {
               validationSchema={loginSchema}
             >
               {({ values, handleChange, handleSubmit, errors }) => (
-                <form onSubmit={handleSubmit} >
+                <form onSubmit={handleSubmit}>
                   <TextField
                     sx={{ mt: 3 }}
                     fullWidth
-                    
                     placeholder="Name"
                     id="name"
                     value={values.name}
                     onChange={handleChange}
                     error={Boolean(errors.name)}
                     helperText={errors.name}
-                   
                     className="txt-fld"
                   />
 
                   <TextField
                     sx={{ mt: 3 }}
                     fullWidth
-                    
                     placeholder="Email Address"
                     id="email"
                     value={values.email}
@@ -101,7 +103,6 @@ const Register = () => {
                     sx={{ mt: 3 }}
                     fullWidth
                     type="number"
-                    
                     placeholder="Contact Number"
                     id="contact"
                     value={values.contact}
@@ -114,7 +115,6 @@ const Register = () => {
                     sx={{ mt: 3 }}
                     fullWidth
                     type="password"
-                    
                     placeholder="Password"
                     id="password"
                     value={values.password}

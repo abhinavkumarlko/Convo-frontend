@@ -49,7 +49,7 @@ const Header = () => {
               </li>
               <li className="nav-item mx-2">
                 {currentUser === null ? (
-                  <NavLink className="btn btn-success white" to="/chatpage">
+                  <NavLink className="btn btn-success white" to="/loginpage">
                     Login/Registration
                   </NavLink>
                 ) : (

@@ -17,7 +17,7 @@ function App() {
           <Route element={<Register />} path="registerpage" />
           <Route element={<NotFound />} path="404" />
 
-          <Route exact element={<Navigate to="/chatpage" />} path="/" />
+          <Route exact element={<Navigate to="/loginpage" />} path="/" />
           <Route exact element={<Navigate to="/404" />} path="*" />
         </Routes>
       </BrowserRouter>
