@@ -28,7 +28,7 @@ const Chat = () => {
   useEffect(() => {
     socket.connect();
     console.log(currentUser);
-    addOnline();
+    if (currentUser !== null) addOnline();
 
     socket.on("recmsg", (data) => {
       setMessageList([...messageList, data]);
@@ -59,64 +59,62 @@ const Chat = () => {
       <div className="container pt-5 ">
         <div className="row">
           <div className="col-md-4 scroll">
-          <div className="user" >
+            <div className="user">
               <h5>Abhinav</h5>
               <p className="text-view">{text}</p>
-            </div >
-          <div className="user" >
+            </div>
+            <div className="user">
               <h5>Abhinav</h5>
               <p className="text-view">{text}</p>
-            </div >
-          <div className="user" >
+            </div>
+            <div className="user">
               <h5>Abhinav</h5>
               <p className="text-view">{text}</p>
-            </div >
-          <div className="user" >
+            </div>
+            <div className="user">
               <h5>Abhinav</h5>
               <p className="text-view">{text}</p>
-            </div >
-          <div className="user" >
+            </div>
+            <div className="user">
               <h5>Abhinav</h5>
               <p className="text-view">{text}</p>
-            </div >
-          <div className="user" >
+            </div>
+            <div className="user">
               <h5>Abhinav</h5>
               <p className="text-view">{text}</p>
-            </div >
-          <div className="user" >
+            </div>
+            <div className="user">
               <h5>Abhinav</h5>
               <p className="text-view">{text}</p>
-            </div >
-          <div className="user" >
+            </div>
+            <div className="user">
               <h5>Abhinav</h5>
               <p className="text-view">{text}</p>
-            </div >
-          <div className="user" >
+            </div>
+            <div className="user">
               <h5>Abhinav</h5>
               <p className="text-view">{text}</p>
-            </div >
-          <div className="user" >
+            </div>
+            <div className="user">
               <h5>Abhinav</h5>
               <p className="text-view">{text}</p>
-            </div >
-          <div className="user" >
+            </div>
+            <div className="user">
               <h5>Abhinav</h5>
               <p className="text-view">{text}</p>
-            </div >
-          <div className="user" >
+            </div>
+            <div className="user">
               <h5>Abhinav</h5>
               <p className="text-view">{text}</p>
-            </div >
-          <div className="user" >
+            </div>
+            <div className="user">
               <h5>Abhinav</h5>
               <p className="text-view">{text}</p>
-            </div >
-          <div className="user" >
+            </div>
+            <div className="user">
               <h5>Abhinav</h5>
               <p className="text-view">{text}</p>
-            </div >
-            
-            
+            </div>
           </div>
           <div className="col-md-8">
             <div className="card">
