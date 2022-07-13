@@ -55,66 +55,68 @@ const Chat = () => {
   };
 
   return (
-    <div className="h-100 mt-5">
-      <div className="container pt-5">
+    <div className="h-100 mt-5 pt-2 bg-">
+      <div className="container pt-5 ">
         <div className="row">
           <div className="col-md-4 scroll">
-            <section>
+          <div className="user" >
               <h5>Abhinav</h5>
-              <p>{text}</p>
-            </section>
-            <section>
+              <p className="text-view">{text}</p>
+            </div >
+          <div className="user" >
               <h5>Abhinav</h5>
-              <p>{text}</p>
-            </section>
-            <section>
+              <p className="text-view">{text}</p>
+            </div >
+          <div className="user" >
               <h5>Abhinav</h5>
-              <p>{text}</p>
-            </section>
-            <section>
+              <p className="text-view">{text}</p>
+            </div >
+          <div className="user" >
               <h5>Abhinav</h5>
-              <p>{text}</p>
-            </section>
-            <section>
+              <p className="text-view">{text}</p>
+            </div >
+          <div className="user" >
               <h5>Abhinav</h5>
-              <p>{text}</p>
-            </section>
-            <section>
+              <p className="text-view">{text}</p>
+            </div >
+          <div className="user" >
               <h5>Abhinav</h5>
-              <p>{text}</p>
-            </section>
-            <section>
+              <p className="text-view">{text}</p>
+            </div >
+          <div className="user" >
               <h5>Abhinav</h5>
-              <p>{text}</p>
-            </section>
-            <section>
+              <p className="text-view">{text}</p>
+            </div >
+          <div className="user" >
               <h5>Abhinav</h5>
-              <p>{text}</p>
-            </section>
-            <section>
+              <p className="text-view">{text}</p>
+            </div >
+          <div className="user" >
               <h5>Abhinav</h5>
-              <p>{text}</p>
-            </section>
-            <section>
+              <p className="text-view">{text}</p>
+            </div >
+          <div className="user" >
               <h5>Abhinav</h5>
-              <p>{text}</p>
-            </section>
-            <section>
+              <p className="text-view">{text}</p>
+            </div >
+          <div className="user" >
               <h5>Abhinav</h5>
-              <p>{text}</p>
-            </section>
-            <section>
+              <p className="text-view">{text}</p>
+            </div >
+          <div className="user" >
               <h5>Abhinav</h5>
-              <p>{text}</p>
-            </section>
-            <section>
+              <p className="text-view">{text}</p>
+            </div >
+          <div className="user" >
               <h5>Abhinav</h5>
-              <p>{text}</p>
-            </section>
-            <section>
+              <p className="text-view">{text}</p>
+            </div >
+          <div className="user" >
               <h5>Abhinav</h5>
-              <p>{text}</p>
-            </section>
+              <p className="text-view">{text}</p>
+            </div >
+            
+            
           </div>
           <div className="col-md-8">
             <div className="card">

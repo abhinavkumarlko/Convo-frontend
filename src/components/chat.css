@@ -1,6 +1,7 @@
+
 .chat-area{
     height: 70vh;
-    overflow-y: auto;
+    overflow-y: scroll;
     padding: 2rem;
 }
 
@@ -15,13 +16,13 @@
 
  
 .msg-sent{
-    background: rgb(0, 167, 81);
+    background: rgba(0, 179, 87, 0.851);
     margin-left: auto;
     border-radius: 1.5rem 0 1.5rem 1.5rem;
 }
 
 .msg-rec{
-    background: rgb(0, 166, 255);
+    background: rgba(0, 139, 214, 0.832);
     border-radius: 0 1.5rem 1.5rem 1.5rem;
 
 }
@@ -29,11 +30,17 @@
     overflow-y: auto;
     height: 84vh;
 }
-/* .user{
-    width: 10%;
-    background-color: antiquewhite;
-} */
+.user{
+    padding: 8px;
+    margin: 5px;
+    border-radius: 20px;
+    background-color: rgb(239, 239, 239) !important ;
+}
 .text-view{
-    height: 5px;
+    height: 3px;
+    padding: 3px;
 
+}
+.bg{
+background: url();
 }

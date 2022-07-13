@@ -11,6 +11,7 @@ const Header = () => {
   const logout = () => {
     sessionStorage.removeItem("user");
     navigate("/loginpage");
+    // window.location.reload();
   };
 
   return (
@@ -57,7 +58,7 @@ const Header = () => {
                     Logout
                   </button>
                 )}
-
+        
                 {/* <NavLink className="btn btn-success white" to="/loginpage">
                   { ? "Logout" : "Login/Registration"}
                 </NavLink> */}
