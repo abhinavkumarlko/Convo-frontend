@@ -1,17 +1,38 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import chatlogo from "../images/chatlogo.png";
+import { UserContext } from "../userContext";
 // import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(sessionStorage.getItem("user"))
   );
+
+  const { loggedIn, setLoggedIn } = useContext(UserContext);
+
   const navigate = useNavigate();
   const logout = () => {
     sessionStorage.removeItem("user");
     navigate("/loginpage");
+    setLoggedIn(false);
     // window.location.reload();
+  };
+
+  const showLogin = () => {
+    if (!loggedIn) {
+      return (
+        <NavLink className="btn btn-success white" to="/loginpage">
+          Login/Registration
+        </NavLink>
+      );
+    } else {
+      return (
+        <button className="btn btn-danger white " onClick={logout}>
+          Logout
+        </button>
+      );
+    }
   };
 
   return (
@@ -49,16 +70,8 @@ const Header = () => {
                 </NavLink> */}
               </li>
               <li className="nav-item mx-2">
-                {currentUser === null ? (
-                  <NavLink className="btn btn-success white" to="/loginpage">
-                    Login/Registration
-                  </NavLink>
-                ) : (
-                  <button className="btn btn-danger white " onClick={logout}>
-                    Logout
-                  </button>
-                )}
-        
+                {showLogin()}
+
                 {/* <NavLink className="btn btn-success white" to="/loginpage">
                   { ? "Logout" : "Login/Registration"}
                 </NavLink> */}

@@ -11,6 +11,26 @@ const Chat = () => {
     JSON.parse(sessionStorage.getItem("user"))
   );
 
+  const [contactId, setContactId] = useState("");
+
+  const addContact = async () => {
+    const response = await fetch(url + "/user/pushupdate/" + currentUser._id, {
+      method: "PUT",
+      body: JSON.stringify({ contacts: contactId }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log(response.status);
+    if (response.status == 200) {
+      response.json().then((data) => {
+        console.log(data);
+        sessionStorage.setItem("user", JSON.stringify(data));
+        setCurrentUser(data);
+      });
+    }
+  };
+
   const [onlineUsers, setOnlineUsers] = useState([]);
 
   const [messageList, setMessageList] = useState([
@@ -56,67 +76,30 @@ const Chat = () => {
 
   return (
     <div className="h-100 mt-5 pt-2 bg-">
-      <div className="container pt-5 ">
+      <div className="container-fluid pt-5">
+        <h1>{currentUser._id}</h1>
+        <h1>{currentUser.name}</h1>
+        <div className="input-group">
+          <input
+            type="text"
+            className="form-control"
+            onChange={(e) => setContactId(e.target.value)}
+          />
+          <button onClick={addContact} className="btn btn-primary">
+            Add Contact
+          </button>
+        </div>
         <div className="row">
-          <div className="col-md-4 scroll">
-            <div className="user">
-              <h5>Abhinav</h5>
-              <p className="text-view">{text}</p>
-            </div>
-            <div className="user">
-              <h5>Abhinav</h5>
-              <p className="text-view">{text}</p>
-            </div>
-            <div className="user">
-              <h5>Abhinav</h5>
-              <p className="text-view">{text}</p>
-            </div>
-            <div className="user">
-              <h5>Abhinav</h5>
-              <p className="text-view">{text}</p>
-            </div>
-            <div className="user">
-              <h5>Abhinav</h5>
-              <p className="text-view">{text}</p>
-            </div>
-            <div className="user">
-              <h5>Abhinav</h5>
-              <p className="text-view">{text}</p>
-            </div>
-            <div className="user">
-              <h5>Abhinav</h5>
-              <p className="text-view">{text}</p>
-            </div>
-            <div className="user">
-              <h5>Abhinav</h5>
-              <p className="text-view">{text}</p>
-            </div>
-            <div className="user">
-              <h5>Abhinav</h5>
-              <p className="text-view">{text}</p>
-            </div>
-            <div className="user">
-              <h5>Abhinav</h5>
-              <p className="text-view">{text}</p>
-            </div>
-            <div className="user">
-              <h5>Abhinav</h5>
-              <p className="text-view">{text}</p>
-            </div>
-            <div className="user">
-              <h5>Abhinav</h5>
-              <p className="text-view">{text}</p>
-            </div>
-            <div className="user">
-              <h5>Abhinav</h5>
-              <p className="text-view">{text}</p>
-            </div>
-            <div className="user">
-              <h5>Abhinav</h5>
-              <p className="text-view">{text}</p>
-            </div>
+          <div className="col-4 scroll">
+            {currentUser.contacts.map(({ name, email }) => (
+              <div className="user">
+                <h5>{name}</h5>
+                <p>{email}</p>
+                <p className="text-view">{text}</p>
+              </div>
+            ))}
           </div>
-          <div className="col-md-8">
+          <div className="col-8">
             <div className="card">
               <div className="card-body">
                 <div className="chat-area">{displayMessages()}</div>

@@ -1,14 +1,17 @@
 import { TextField, Button } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import "./style.css";
 import chatlogo from "../images/chatlogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { UserContext } from "../userContext";
 
 const Login = () => {
   const navigate = useNavigate();
+
+  const { setLoggedIn } = useContext(UserContext);
 
   const handleFormSubmit = (formdata) => {
     console.log("Login Successfull!");
@@ -27,13 +30,12 @@ const Login = () => {
           title: "Success",
           text: "Login Successful",
         }).then(() => {
-
           res.json().then((userdata) => {
             console.log(userdata);
-            sessionStorage.setItem('user', JSON.stringify(userdata));
-          })
+            setLoggedIn(true);
+            sessionStorage.setItem("user", JSON.stringify(userdata));
+          });
           navigate("/chatpage");
-
         });
       } else if (res.status === 300) {
         Swal.fire({
