@@ -10,8 +10,12 @@ const Chat = () => {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(sessionStorage.getItem("user"))
   );
-
   const [contactId, setContactId] = useState("");
+  const [messageList, setMessageList] = useState([
+    // { text : 'Kal kon sa exam hai?', sent: true }
+  ]);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const [selContact, setSelContact] = useState(null);
 
   const addContact = async () => {
     const response = await fetch(url + "/user/pushupdate/" + currentUser._id, {
@@ -30,15 +34,6 @@ const Chat = () => {
       });
     }
   };
-
-  const [onlineUsers, setOnlineUsers] = useState([]);
-
-  const [messageList, setMessageList] = useState([
-    // { text : 'Kal kon sa exam hai?', sent: true },
-    // { text : 'Kal hi pata krenge!!', sent: false },
-    // { text : 'ok Bye BYe!!', sent: true },
-    // { text : 'ok Good Night!!', sent: false },
-  ]);
 
   const addOnline = () => {
     console.log(currentUser);
@@ -74,25 +69,42 @@ const Chat = () => {
     ));
   };
 
-  return (
-    <div className="h-100 mt-5 pt-2 bg-">
-      <div className="container-fluid pt-5">
-        <h1>{currentUser._id}</h1>
-        <h1>{currentUser.name}</h1>
-        <div className="input-group">
-          <input
-            type="text"
-            className="form-control"
-            onChange={(e) => setContactId(e.target.value)}
-          />
-          <button onClick={addContact} className="btn btn-primary">
-            Add Contact
-          </button>
+  const showSelContact = () => {
+    if (selContact !== null) {
+      return (
+        <div className="text-white bg-dark">
+          <h4>{selContact.name}</h4>
+          <p>{selContact.contact}</p>
         </div>
+      );
+    }
+  };
+
+  return (
+    <div className="h-100 mt-5 pt-2 bg-dark">
+      <div className="container pt-5">
+        <div className="hidden">
+          <h1>{currentUser._id}</h1>
+          <h1>{currentUser.name}</h1>
+        </div>
+
         <div className="row">
           <div className="col-4 scroll">
-            {currentUser.contacts.map(({ name, email }) => (
-              <div className="user">
+            <div className="input-group sticky-top">
+              <input
+                type="text"
+                className="form-control"
+                onChange={(e) => setContactId(e.target.value)}
+              />
+              <button onClick={addContact} className="btn btn-primary">
+                Add Contact
+              </button>
+            </div>
+            {currentUser.contacts.map(({ _id, name, email, contact }) => (
+              <div
+                className="user "
+                onClick={(e) => setSelContact({ _id, name, email, contact })}
+              >
                 <h5>{name}</h5>
                 <p>{email}</p>
                 <p className="text-view">{text}</p>
@@ -101,11 +113,20 @@ const Chat = () => {
           </div>
           <div className="col-8">
             <div className="card">
-              <div className="card-body">
+              <div className="card-body bg">
+                {showSelContact()}
                 <div className="chat-area">{displayMessages()}</div>
               </div>
-              <div className="card-footer">
+              <div className="card-footer bg-dark ">
                 <div class="input-group mb-3">
+                  <button
+                    class="btn btn-outline-primary"
+                    type="button"
+                    id="button-addon1"
+                    data-mdb-ripple-color="dark"
+                  >
+                    <i class="fa-solid fa-paperclip fs-6 p-0"></i>
+                  </button>
                   <input
                     type="text"
                     className="form-control"

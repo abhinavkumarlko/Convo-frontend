@@ -31,16 +31,21 @@
     height: 84vh;
 }
 .user{
-    padding: 8px;
+    padding: 10px;
     margin: 5px;
     border-radius: 20px;
-    background-color: rgb(239, 239, 239) !important ;
+    background-color: rgba(255, 6, 118, 0.589)  ;
+    color: rgb(196, 255, 255);
 }
 .text-view{
-    height: 3px;
-    padding: 3px;
+    height: 1px;
+    
 
 }
 .bg{
-background: url();
+background :linear-gradient(to right, rgba(36, 36, 36, 0.473),rgba(36, 36, 36, 0.473)), url(https://st3.depositphotos.com/10953546/14866/v/600/depositphotos_148660113-stock-illustration-technology-social-media-network-link.jpg);
+            
+}
+.hidden{
+    display: none;
 }

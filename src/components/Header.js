@@ -22,13 +22,13 @@ const Header = () => {
   const showLogin = () => {
     if (!loggedIn) {
       return (
-        <NavLink className="btn btn-success white" to="/loginpage">
+        <NavLink className="btn btn-success white" to="/loginpage"><i class="fa-solid fa-right-to-bracket me-2"></i>
           Login/Registration
         </NavLink>
       );
     } else {
       return (
-        <button className="btn btn-danger white " onClick={logout}>
+        <button className="btn btn-danger white " onClick={logout}><i class="fa-solid fa-right-from-bracket me-2"></i>
           Logout
         </button>
       );
