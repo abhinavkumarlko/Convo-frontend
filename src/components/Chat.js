@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
+import Swal from "sweetalert2";
 import "./chat.css";
 
 const Chat = () => {
@@ -10,14 +11,15 @@ const Chat = () => {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(sessionStorage.getItem("user"))
   );
-  const [contactId, setContactId] = useState("");
+  // const [contactId, setContactId] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
   const [messageList, setMessageList] = useState([
     // { text : 'Kal kon sa exam hai?', sent: true }
   ]);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [selContact, setSelContact] = useState(null);
 
-  const addContact = async () => {
+  const addContact = async (contactId) => {
     const response = await fetch(url + "/user/pushupdate/" + currentUser._id, {
       method: "PUT",
       body: JSON.stringify({ contacts: contactId }),
@@ -56,9 +58,49 @@ const Chat = () => {
   });
 
   const sendMessage = () => {
-    let obj = { text: text, sent: true };
+    let obj = { text: text, sent: true, rec_id: selContact._id };
     socket.emit("sendmsg", obj);
     setMessageList([...messageList, obj]);
+  };
+
+  const checkUser = () => {
+    fetch("http://localhost:5000/user/getbyemail/" + contactEmail)
+      .then((res) => {
+        res.json().then((data) => {
+          if (data) {
+            console.log(data);
+            const conToAdd = currentUser.contacts.filter(
+              (con) => con._id === data._id
+            );
+            if (!conToAdd.length) {
+              if (contactEmail !== currentUser._id) {
+                addContact(data._id);
+              } else {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops!!",
+                  text: "Invalid Email",
+                });
+              }
+            } else {
+              // already exist message
+              Swal.fire({
+                icon: "error",
+                title: "Oops!!",
+                text: "Already Exist",
+              });
+            }
+          } else {
+            // invalid email message
+            Swal.fire({
+              icon: "error",
+              title: "Oops!!",
+              text: "Invalid Email",
+            });
+          }
+        });
+      })
+      .catch((err) => {});
   };
 
   const displayMessages = () => {
@@ -72,9 +114,10 @@ const Chat = () => {
   const showSelContact = () => {
     if (selContact !== null) {
       return (
-        <div className="text-white bg-dark">
-          <h4>{selContact.name}</h4>
-          <p>{selContact.contact}</p>
+        <div className="text-danger fst-italic bg-black name-tag sticky-top">
+          <div className="ms-4 py-3 ">
+            <h4>{selContact.name}</h4>
+          </div>
         </div>
       );
     }
@@ -94,15 +137,15 @@ const Chat = () => {
               <input
                 type="text"
                 className="form-control"
-                onChange={(e) => setContactId(e.target.value)}
+                onChange={(e) => setContactEmail(e.target.value)}
               />
-              <button onClick={addContact} className="btn btn-primary">
+              <button onClick={checkUser} className="btn btn-primary">
                 Add Contact
               </button>
             </div>
             {currentUser.contacts.map(({ _id, name, email, contact }) => (
               <div
-                className="user "
+                className="user hover-overlay ripple "
                 onClick={(e) => setSelContact({ _id, name, email, contact })}
               >
                 <h5>{name}</h5>
@@ -111,38 +154,38 @@ const Chat = () => {
               </div>
             ))}
           </div>
-          <div className="col-8">
-            <div className="card">
-              <div className="card-body bg">
-                {showSelContact()}
-                <div className="chat-area">{displayMessages()}</div>
+          <div className="col-8  ">
+            <div className="card chat-scroll bg ">
+              {showSelContact()}
+              <div className="card-body  ">
+                <div className="chat-area ">{displayMessages()}</div>
               </div>
-              <div className="card-footer bg-dark ">
-                <div class="input-group mb-3">
-                  <button
-                    class="btn btn-outline-primary"
-                    type="button"
-                    id="button-addon1"
-                    data-mdb-ripple-color="dark"
-                  >
-                    <i class="fa-solid fa-paperclip fs-6 p-0"></i>
-                  </button>
-                  <input
-                    type="text"
-                    className="form-control"
-                    aria-describedby="button-addon2"
-                    onChange={(e) => setText(e.target.value)}
-                  />
-                  <button
-                    class="btn btn-primary"
-                    onClick={sendMessage}
-                    type="button"
-                    id="button-addon2"
-                    data-mdb-ripple-color="dark"
-                  >
-                    Send Message
-                  </button>
-                </div>
+            </div>
+            <div className="  ">
+              <div class="input-group mb-3 ">
+                <button
+                  class="btn btn-outline-primary"
+                  type="button"
+                  id="button-addon1"
+                  data-mdb-ripple-color="dark"
+                >
+                  <i class="fa-solid fa-paperclip fs-6 p-0"></i>
+                </button>
+                <input
+                  type="text"
+                  className="form-control "
+                  aria-describedby="button-addon2"
+                  onChange={(e) => setText(e.target.value)}
+                />
+                <button
+                  class="btn btn-primary"
+                  onClick={sendMessage}
+                  type="button"
+                  id="button-addon2"
+                  data-mdb-ripple-color="dark"
+                >
+                  Send Message
+                </button>
               </div>
             </div>
           </div>

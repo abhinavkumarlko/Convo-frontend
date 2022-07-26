@@ -1,14 +1,14 @@
 
 .chat-area{
     height: 70vh;
-    overflow-y: scroll;
+    
     padding: 2rem;
 }
 
 .msg-text{
-    color: white;
+    color: rgb(253, 253, 253);
     font-weight: bold;
-    padding: 1.5rem;
+    padding: 1.25rem;
     width: fit-content;
     max-width: 70%;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.263);
@@ -16,36 +16,58 @@
 
  
 .msg-sent{
-    background: rgba(0, 179, 87, 0.851);
+    background: rgba(0, 253, 219, 0.644);
+    /* background: rgba(139, 225, 0, 0.74); */
     margin-left: auto;
-    border-radius: 1.5rem 0 1.5rem 1.5rem;
+    border-radius: 1.25rem 0 1.25rem 1.25rem;
 }
 
 .msg-rec{
-    background: rgba(0, 139, 214, 0.832);
-    border-radius: 0 1.5rem 1.5rem 1.5rem;
+    background: rgba(0, 59, 178, 0.74);
+    border-radius: 0 1.25rem 1.25rem 1.25rem;
 
 }
 .scroll{
     overflow-y: auto;
     height: 84vh;
 }
+.chat-scroll{
+    overflow-y: auto;
+    height: 80vh;
+}
 .user{
     padding: 10px;
+    padding-left: 25px;
     margin: 5px;
     border-radius: 20px;
     background-color: rgba(255, 6, 118, 0.589)  ;
     color: rgb(196, 255, 255);
+    font-family: 'Rubik', sans-serif;
+    cursor: pointer;
 }
 .text-view{
     height: 1px;
-    
-
 }
 .bg{
-background :linear-gradient(to right, rgba(36, 36, 36, 0.473),rgba(36, 36, 36, 0.473)), url(https://st3.depositphotos.com/10953546/14866/v/600/depositphotos_148660113-stock-illustration-technology-social-media-network-link.jpg);
-            
+    background :linear-gradient(to right, rgba(36, 36, 36, 0.473),rgba(36, 36, 36, 0.473)), url(https://img.freepik.com/free-vector/neon-quote-box-with-text-space_1017-31493.jpg?t=st=1658783750~exp=1658784350~hmac=908753b8ec40b2bd9bb663f3af7846130ad530c57c83e22bcde889f7fde9c9f7&w=1000);
+    background-attachment: fixed;
+    background-position: center;
+    /* background-repeat: no-repeat; */
+
+        
 }
 .hidden{
     display: none;
+}
+.rd{
+    border-radius: none !important ;
+}
+.name-tag{
+    font-family: 'Acme', sans-serif;
+}
+.text-style{
+    font-family: 'Lobster', cursive;
+}
+.user:hover{
+    background-color: #a61458;
 }

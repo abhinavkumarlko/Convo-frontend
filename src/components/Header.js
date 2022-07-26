@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import chatlogo from "../images/chatlogo.png";
 import { UserContext } from "../userContext";
+import "./chat.css";
+
 // import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
@@ -47,7 +49,7 @@ const Header = () => {
               loading="lazy"
               style={{ marginTop: "-1px" }}
             />
-            <small className="text-white mx-3 fs-3 ">Convo</small>
+            <small className="text-white mx-3 fs-3 text-style">Convo</small>
           </a>
 
           <button
@@ -68,6 +70,7 @@ const Header = () => {
                 {/* <NavLink className="nav-link white" to="/homepage">
                   Home
                 </NavLink> */}
+               
               </li>
               <li className="nav-item mx-2">
                 {showLogin()}
