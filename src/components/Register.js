@@ -52,9 +52,9 @@ const Register = () => {
       className="container-fluid"
       style={{
         background:
-          "linear-gradient(to right, rgba(37, 37, 37, 0.547),rgba(33, 33, 33, 0.524)),url('https://c0.wallpaperflare.com/preview/428/158/321/background-coffee-computer-connection.jpg') ",
+          "linear-gradient(to right, rgba(37, 37, 37, 0.547),rgba(33, 33, 33, 0.524)),url('https://img.freepik.com/free-vector/flat-comic-style-background_52683-54433.jpg?w=1580&t=st=1659197352~exp=1659197952~hmac=c5132a951fdd9b3eb85a1e65518f073ed102f7764ab97889a834f0163bacd216') ",
         backgroundRepeat: "no-repeat",
-        height: "100vh",
+        height: "92vh",
         backgroundSize: "cover",
       }}
     >

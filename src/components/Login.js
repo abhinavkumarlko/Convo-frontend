@@ -57,7 +57,7 @@ const Login = () => {
       className="container-fluid"
       style={{
         background:
-          "linear-gradient(to right, rgba(37, 37, 37, 0.547),rgba(33, 33, 33, 0.524)),url('') ",
+          "linear-gradient(to right, rgba(37, 37, 37, 0.547),rgba(33, 33, 33, 0.524)),url('https://img.freepik.com/free-vector/flat-design-yellow-comic-style-background_23-2148790011.jpg?w=800') ",
         backgroundRepeat: "no-repeat",
         height: "92vh",
         backgroundSize: "cover",

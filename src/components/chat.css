@@ -13,7 +13,6 @@
     max-width: 70%;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.263);
 }
-
  
 .msg-sent{
     background: rgba(0, 253, 219, 0.644);
@@ -52,9 +51,7 @@
     background :linear-gradient(to right, rgba(36, 36, 36, 0.473),rgba(36, 36, 36, 0.473)), url(https://img.freepik.com/free-vector/neon-quote-box-with-text-space_1017-31493.jpg?t=st=1658783750~exp=1658784350~hmac=908753b8ec40b2bd9bb663f3af7846130ad530c57c83e22bcde889f7fde9c9f7&w=1000);
     background-attachment: fixed;
     background-position: center;
-    /* background-repeat: no-repeat; */
-
-        
+    /* background-repeat: no-repeat; */       
 }
 .hidden{
     display: none;
@@ -66,8 +63,20 @@
     font-family: 'Acme', sans-serif;
 }
 .text-style{
-    font-family: 'Lobster', cursive;
+    font-family: 'Carter One', cursive;
+    border-radius: 15%;
 }
 .user:hover{
     background-color: #a61458;
+}
+.name-tag{
+    color: rgba(255, 234, 0, 0.858);
+    font-weight: 400;
+    font-size: 1.25rem;
+    /* padding-top: 0.50rem; */
+}
+.hi{
+    color: blueviolet;
+    font-size: 1.50rem;
+    font-family: 'Lobster', cursive;
 }

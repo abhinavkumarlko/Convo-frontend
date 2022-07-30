@@ -24,13 +24,15 @@ const Header = () => {
   const showLogin = () => {
     if (!loggedIn) {
       return (
-        <NavLink className="btn btn-success white" to="/loginpage"><i class="fa-solid fa-right-to-bracket me-2"></i>
+        <NavLink className="btn btn-success white" to="/loginpage">
+          <i class="fa-solid fa-right-to-bracket me-2"></i>
           Login/Registration
         </NavLink>
       );
     } else {
       return (
-        <button className="btn btn-danger white " onClick={logout}><i class="fa-solid fa-right-from-bracket me-2"></i>
+        <button className="btn btn-danger white " onClick={logout}>
+          <i class="fa-solid fa-right-from-bracket me-2"></i>
           Logout
         </button>
       );
@@ -49,7 +51,7 @@ const Header = () => {
               loading="lazy"
               style={{ marginTop: "-1px" }}
             />
-            <small className="text-white mx-3 fs-3 text-style">Convo</small>
+            <small className="text-white mx-3 fs-2 text-style ">Convo</small>
           </a>
 
           <button
@@ -70,7 +72,12 @@ const Header = () => {
                 {/* <NavLink className="nav-link white" to="/homepage">
                   Home
                 </NavLink> */}
-               
+              </li>
+              <li className="nav-item mx-2">
+                {/* <div className="name-tag">
+                  <span className="hi">Hi,&nbsp; </span>
+                  {currentUser.name}
+                </div> */}
               </li>
               <li className="nav-item mx-2">
                 {showLogin()}

@@ -71,8 +71,8 @@
 }
 /* .card-blur { background-color: rgba(245, 245, 245, 0.8); } */
 .mask-custom {
-    backdrop-filter: blur(10px);
-    background-color: rgba(0, 255, 136, 0.1);
+    backdrop-filter: blur(3px);
+    background-color: rgba(0, 107, 57, 0.1);
   }
 .img-logo{
     width: 38%;

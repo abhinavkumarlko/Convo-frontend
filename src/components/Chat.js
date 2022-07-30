@@ -7,7 +7,7 @@ const Chat = () => {
   const url = "http://localhost:5000";
   const [socket] = useState(io(url, { autoConnect: false }));
   const [text, setText] = useState("");
-
+  const [thumbnail, setThumbnail] = useState("");
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(sessionStorage.getItem("user"))
   );
@@ -23,10 +23,11 @@ const Chat = () => {
     const response = await fetch(url + "/user/pushupdate/" + currentUser._id, {
       method: "PUT",
       body: JSON.stringify({ contacts: contactId }),
-      headers: {
+      headers: { 
         "Content-Type": "application/json",
       },
     });
+
     console.log(response.status);
     if (response.status == 200) {
       response.json().then((data) => {
@@ -56,6 +57,24 @@ const Chat = () => {
       // setOnlineUsers(data);
     });
   });
+
+  const uploadFile = async (e) => {
+    setText(e.target.value);
+    const file = e.target.files[0];
+    const fd = new FormData();
+    setThumbnail(file.name);
+
+    fd.append("file", file);
+
+    const response = await fetch("http://localhost:5000/util/uploadfile", {
+      method: "POST",
+      body: fd,
+    });
+
+    if (response.status == 200) {
+      console.log("file upload success");
+    }
+  };
 
   const sendMessage = () => {
     let obj = { text: text, sent: true, rec_id: selContact._id };
@@ -132,7 +151,7 @@ const Chat = () => {
         </div>
 
         <div className="row">
-          <div className="col-4 scroll">
+          <div className="col-md-4 scroll mx-4">
             <div className="input-group sticky-top">
               <input
                 type="text"
@@ -154,7 +173,7 @@ const Chat = () => {
               </div>
             ))}
           </div>
-          <div className="col-8  ">
+          <div className="col-md-7 mx-2 ">
             <div className="card chat-scroll bg ">
               {showSelContact()}
               <div className="card-body  ">
@@ -165,17 +184,19 @@ const Chat = () => {
               <div class="input-group mb-3 ">
                 <button
                   class="btn btn-outline-primary"
-                  type="button"
+                  type="submit"
+                  for="imp"
                   id="button-addon1"
                   data-mdb-ripple-color="dark"
                 >
                   <i class="fa-solid fa-paperclip fs-6 p-0"></i>
                 </button>
                 <input
-                  type="text"
+                  type="file"
                   className="form-control "
                   aria-describedby="button-addon2"
-                  onChange={(e) => setText(e.target.value)}
+                  id="imp"
+                  onChange={uploadFile}
                 />
                 <button
                   class="btn btn-primary"
