@@ -50,6 +50,12 @@ const Chat = () => {
 
     socket.on("recmsg", (data) => {
       setMessageList([...messageList, data]);
+      saveChat({
+        chatData: data,
+    user: currentUser._id,
+    rec: selContact._id,
+    createdAt : new Date()
+      })
     });
 
     socket.on("usersonline", (data) => {
@@ -76,17 +82,17 @@ const Chat = () => {
   //   }
   // };
 
-  const saveChats = (formdata) => {
+  const saveChat = (formdata) => {
     console.log(formdata);
 
-    fetch("http://localhost:5000/user/add", {
+    fetch("http://localhost:5000/chat/add", {
       method: "POST",
-      body: JSON.stringify(),
+      body: JSON.stringify(formdata),
       headers: {
         "Content-Type": "application/json",
       },
     }).then((res) => {
-      
+      console.log(res.status);
     });
   };
 
@@ -95,6 +101,12 @@ const Chat = () => {
     let obj = { text: text, sent: true, rec_id: selContact._id };
     socket.emit("sendmsg", obj);
     setMessageList([...messageList, obj]);
+    saveChat({
+      chatData: obj,
+  user: currentUser._id,
+  rec: selContact._id,
+  createdAt : new Date()
+    })
   };
 
   const checkUser = () => {
@@ -157,6 +169,20 @@ const Chat = () => {
     }
   };
 
+
+  const fetchChats = (contactid) => {
+    fetch("http://localhost:5000/chat/getbyuser/" + currentUser._id + "/" + contactid)
+      .then((res) => {
+        res.json().then((data) => {
+          console.log(data);
+          // (data.chatData);
+          setMessageList(data.map(obj => (
+            obj.chatData
+          )))
+        });
+      })
+  }
+
   return (
     <div className="h-100 mt-5 pt-2 bg-dark">
       <div className="container pt-5">
@@ -180,7 +206,10 @@ const Chat = () => {
             {currentUser.contacts.map(({ _id, name, email, contact }) => (
               <div
                 className="user hover-overlay ripple "
-                onClick={(e) => setSelContact({ _id, name, email, contact })}
+                onClick={(e) => {
+                  fetchChats(_id);
+                  setSelContact({ _id, name, email, contact })}
+                }
               >
                 <h5>{name}</h5>
                 <p>{email}</p>
