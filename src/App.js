@@ -20,7 +20,7 @@ function App() {
     <div className="">
       <BrowserRouter>
         <UserProvider currentUser={currentUser}>
-          <Header />
+          <Header  CurrentUser={currentUser} />
           <Routes>
             <Route element={<Home />} path="homepage" />
             <Route

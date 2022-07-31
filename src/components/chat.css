@@ -64,7 +64,10 @@
 }
 .text-style{
     font-family: 'Carter One', cursive;
-    border-radius: 15%;
+}
+.border-style{
+    border-radius: 18%;
+    border : 7px solid black 
 }
 .user:hover{
     background-color: #a61458;

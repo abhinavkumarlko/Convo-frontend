@@ -58,23 +58,38 @@ const Chat = () => {
     });
   });
 
-  const uploadFile = async (e) => {
-    setText(e.target.value);
-    const file = e.target.files[0];
-    const fd = new FormData();
-    setThumbnail(file.name);
+  // const uploadFile = async (e) => {
+  //   setText(e.target.value);
+  //   const file = e.target.files[0];
+  //   const fd = new FormData();
+  //   setThumbnail(file.name);
 
-    fd.append("file", file);
+  //   fd.append("file", file);
 
-    const response = await fetch("http://localhost:5000/util/uploadfile", {
+  //   const response = await fetch("http://localhost:5000/util/uploadfile", {
+  //     method: "POST",
+  //     body: fd,
+  //   });
+
+  //   if (response.status == 200) {
+  //     console.log("file upload success");
+  //   }
+  // };
+
+  const saveChats = (formdata) => {
+    console.log(formdata);
+
+    fetch("http://localhost:5000/user/add", {
       method: "POST",
-      body: fd,
+      body: JSON.stringify(),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => {
+      
     });
-
-    if (response.status == 200) {
-      console.log("file upload success");
-    }
   };
+
 
   const sendMessage = () => {
     let obj = { text: text, sent: true, rec_id: selContact._id };
@@ -192,11 +207,11 @@ const Chat = () => {
                   <i class="fa-solid fa-paperclip fs-6 p-0"></i>
                 </button>
                 <input
-                  type="file"
+                  type="text"
                   className="form-control "
                   aria-describedby="button-addon2"
                   id="imp"
-                  onChange={uploadFile}
+                  onChange={(e) => setText(e.target.value)}
                 />
                 <button
                   class="btn btn-primary"

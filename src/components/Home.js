@@ -18,7 +18,7 @@ const Home = () => {
             <div className="text-light " style={{ paddingTop: "360px" }}>
               {/* <h1 className="mb-3 text-style">Let's Start Chatting</h1> */}
               
-              <Link className="btn btn-outline-light btn-lg text-style fs-2 text-dark border-dark" role="button" to="/chatpage">
+              <Link className="btn btn-outline-light btn-lg text-style fs-2 text-black border-style" role="button" to="/chatpage">
               Let's &nbsp;Start &nbsp;Chatting
                 </Link>
             </div>

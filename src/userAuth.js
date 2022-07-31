@@ -11,7 +11,6 @@ const Authorisor = ({ children }) => {
   if (currentUser === null) {
     Swal.fire({
       icon: "info",
-      title: "OOops!!",
       text: "You need to be logged in",
     });
     return <Navigate to="/loginpage" />;

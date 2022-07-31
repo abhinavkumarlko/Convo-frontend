@@ -34,8 +34,8 @@ const Login = () => {
             console.log(userdata);
             setLoggedIn(true);
             sessionStorage.setItem("user", JSON.stringify(userdata));
+            navigate("/chatpage");
           });
-          navigate("/chatpage");
         });
       } else if (res.status === 300) {
         Swal.fire({
