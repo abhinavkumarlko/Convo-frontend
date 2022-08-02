@@ -5,6 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 <div>
 <h1>Hi how are you</h1>
 </div>
+
 ## Available Scripts
 
 In the project directory, you can run:
