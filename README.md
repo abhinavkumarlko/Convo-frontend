@@ -1,14 +1,8 @@
-
-
-
-
-
-
-# Convo 
+# Convo
 
 Convo is a multi user chat application.
 
-##  Getting Started with Create React App
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -24,9 +18,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-
-
-
 ## Screenshots
 
 - Landing Page
@@ -39,14 +30,12 @@ You may also see any lint errors in the console.
 
 - Login Page
 
-![]()
+![](https://github.com/abhinavkumarlko/Convo-frontend/blob/master/Screenshots/Loginpage.JPG?raw=true)
 
 - Chat Page
 
-![](Screenshots/Chatpage.jpg)
+![](https://github.com/abhinavkumarlko/Convo-frontend/blob/master/Screenshots/Chatpage.JPG?raw=true)
 
 - Sending and Reciving messages
 
-![](Screenshots/Chatting.jpg)
-
-
+![](https://github.com/abhinavkumarlko/Convo-frontend/blob/master/Screenshots/Chatting.JPG?raw=true)
