@@ -31,15 +31,15 @@ You may also see any lint errors in the console.
 
 - Landing Page
 
-![](Screenshots/Landingpage.jpg)
+![](https://github.com/abhinavkumarlko/Convo-frontend/blob/master/Screenshots/Landingpage.JPG?raw=true)
 
 - Register Page
 
-![](Screenshots/Registerpage.jpg)
+![](https://github.com/abhinavkumarlko/Convo-frontend/blob/master/Screenshots/Registerpage.JPG?raw=true)
 
 - Login Page
 
-![](Screenshots/Loginpage.jpg)
+![]()
 
 - Chat Page
 
