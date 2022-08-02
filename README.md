@@ -2,6 +2,7 @@
 
 # Getting Started with Create React App
 
+<button class="btn btn-danger"></button>
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
