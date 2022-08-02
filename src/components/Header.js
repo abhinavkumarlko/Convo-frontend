@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import chatlogo from "../images/chatlogo.png";
 import { UserContext } from "../userContext";
 import "./chat.css";
@@ -43,7 +43,7 @@ const Header = () => {
     <div>
       <nav class="navbar navbar-expand-lg navbar-black bg-black fixed-top  ">
         <div class="container ">
-          <a class="navbar-brand m-2" href="/">
+          <Link class="navbar-brand m-2" to ="/">
             <img
               src={chatlogo}
               height="40"
@@ -52,7 +52,7 @@ const Header = () => {
               style={{ marginTop: "-1px" }}
             />
             <small className="text-white mx-3 fs-2 text-style ">Convo</small>
-          </a>
+          </Link>
 
           <button
             class="navbar-toggler"

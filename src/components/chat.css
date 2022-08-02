@@ -83,3 +83,10 @@
     font-size: 1.50rem;
     font-family: 'Lobster', cursive;
 }
+.margin-center{
+    margin-top: 300px;
+    text-align: center;
+}
+.bg-none{
+    background: transparent;
+}

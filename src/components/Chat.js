@@ -18,12 +18,11 @@ const Chat = () => {
   ]);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [selContact, setSelContact] = useState(null);
-
   const addContact = async (contactId) => {
     const response = await fetch(url + "/user/pushupdate/" + currentUser._id, {
       method: "PUT",
       body: JSON.stringify({ contacts: contactId }),
-      headers: { 
+      headers: {
         "Content-Type": "application/json",
       },
     });
@@ -52,10 +51,10 @@ const Chat = () => {
       setMessageList([...messageList, data]);
       saveChat({
         chatData: data,
-    user: currentUser._id,
-    rec: selContact._id,
-    createdAt : new Date()
-      })
+        user: currentUser._id,
+        rec: selContact._id,
+        createdAt: new Date(),
+      });
     });
 
     socket.on("usersonline", (data) => {
@@ -96,17 +95,16 @@ const Chat = () => {
     });
   };
 
-
   const sendMessage = () => {
     let obj = { text: text, sent: true, rec_id: selContact._id };
     socket.emit("sendmsg", obj);
     setMessageList([...messageList, obj]);
     saveChat({
       chatData: obj,
-  user: currentUser._id,
-  rec: selContact._id,
-  createdAt : new Date()
-    })
+      user: currentUser._id,
+      rec: selContact._id,
+      createdAt: new Date(),
+    });
   };
 
   const checkUser = () => {
@@ -168,20 +166,34 @@ const Chat = () => {
       );
     }
   };
+  const showMessage = () => {
+    if (selContact == null) {
+      return (
+        <div className="container  text-warning fst-italic  margin-center">
 
+            <h4 className="fs-2">Hi, {currentUser.name}</h4>
+            <p className="fs-5"><i class="fa-solid fa-circle-arrow-left"></i>&nbsp; Select friend to chat.
+            </p>
+          </div>
+        
+      );
+    }
+  };
 
   const fetchChats = (contactid) => {
-    fetch("http://localhost:5000/chat/getbyuser/" + currentUser._id + "/" + contactid)
-      .then((res) => {
-        res.json().then((data) => {
-          console.log(data);
-          // (data.chatData);
-          setMessageList(data.map(obj => (
-            obj.chatData
-          )))
-        });
-      })
-  }
+    fetch(
+      "http://localhost:5000/chat/getbyuser/" +
+        currentUser._id +
+        "/" +
+        contactid
+    ).then((res) => {
+      res.json().then((data) => {
+        console.log(data);
+        // (data.chatData);
+        setMessageList(data.map((obj) => obj.chatData));
+      });
+    });
+  };
 
   return (
     <div className="h-100 mt-5 pt-2 bg-dark">
@@ -200,7 +212,7 @@ const Chat = () => {
                 onChange={(e) => setContactEmail(e.target.value)}
               />
               <button onClick={checkUser} className="btn btn-primary">
-                Add Contact
+                Add Friend
               </button>
             </div>
             {currentUser.contacts.map(({ _id, name, email, contact }) => (
@@ -208,20 +220,23 @@ const Chat = () => {
                 className="user hover-overlay ripple "
                 onClick={(e) => {
                   fetchChats(_id);
-                  setSelContact({ _id, name, email, contact })}
-                }
+                  setSelContact({ _id, name, email, contact });
+                }}
               >
                 <h5>{name}</h5>
                 <p>{email}</p>
-                <p className="text-view">{text}</p>
+                {/* <p className="text-view">{text}</p> */}
               </div>
             ))}
           </div>
           <div className="col-md-7 mx-2 ">
             <div className="card chat-scroll bg ">
+              {showMessage()}
               {showSelContact()}
-              <div className="card-body  ">
-                <div className="chat-area ">{displayMessages()}</div>
+              <div className="card-body ">
+                <div className="chat-area ">
+                  {displayMessages()}
+                </div>
               </div>
             </div>
             <div className="  ">
