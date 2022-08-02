@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 <div>
-<h1>Hi how are you</h1>
+<h6>Hi how are you</h6>
 </div>
 
 ## Available Scripts
